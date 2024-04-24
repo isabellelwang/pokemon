@@ -1,0 +1,10 @@
+Data Description
+
+Author : Luna McBride
+
+URL : https://www.kaggle.com/datasets/lunamcbride24/pokemon-type-matchup-data?resource=download
+
+Number of Nodes:577
+Number of Edges: 
+
+Other Qualities: Directed Value Graph. Self Edges not allowed. 
