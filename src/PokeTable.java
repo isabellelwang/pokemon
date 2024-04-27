@@ -52,7 +52,7 @@ public class PokeTable{
 
     /**
      * Find the eastiest opps to defeat
-     * @param type
+     * @param pokemon
      * @return Array List of opp types
      */
     public  ArrayList<String> easyOpps(String pokemon){
@@ -71,7 +71,7 @@ public class PokeTable{
 
     /**
      * Find the hardest opps to defeat
-     * @param type
+     * @param pokemon
      * @return Array List of opp types
      */
     public  ArrayList<String> hardOpps(String pokemon){
@@ -98,7 +98,7 @@ public class PokeTable{
         }
 
         PokeTable poketable = new PokeTable(); // Set up
-        System.out.println(poketable.table.toString());
+        System.out.println(poketable.table.toString()); // check that this works
         Scanner in = new Scanner(System.in);
 
         System.out.println("What's ur fav pokemon");
