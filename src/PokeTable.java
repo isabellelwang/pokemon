@@ -61,7 +61,9 @@ public class PokeTable{
 
         for (String t : types){
             for (String opp : Main.strength.predecessors(t)){ // get nodes that point at this type 
-                easyOpps.add(opp);
+                if (!easyOpps.contains(opp)){
+                    easyOpps.add(opp);
+                }
             }
         }
         return easyOpps;
@@ -76,11 +78,12 @@ public class PokeTable{
         ArrayList<String> hardOpps= new ArrayList<>();
         ArrayList<String> types = getTypes(pokemon); // types of given pokemon
         for (String t : types){
-            for (String opp : Main.weakness.successors(t)){ // get nodes that point at this type 
+            for (String opp : Main.weakness.successors(t)){ // get nodes that this node points at 
+                if (!hardOpps.contains(opp)){
                 hardOpps.add(opp);
+                }
             }
         }
-
         return hardOpps;
     }
 
@@ -95,6 +98,7 @@ public class PokeTable{
         }
 
         PokeTable poketable = new PokeTable(); // Set up
+        System.out.println(poketable.table.toString());
         Scanner in = new Scanner(System.in);
 
         System.out.println("What's ur fav pokemon");
