@@ -12,31 +12,6 @@ public class PokemonStats {
     private static Set<EndpointPair<String>> nEdge; // sets of edges
     private static Hashtable<String, Integer> numPerNode; // <type, number of edges connected to it>
 
-    public static void main(String[] args) {
-        try {
-            Main.strengthMultiplier();
-            Main.weaknessMultiplier();
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        }
-        PokemonStats strengthStats = new PokemonStats(Main.strength);
-
-        System.out.println("The nodes in the Strength graph are: " + getNodes(Main.strength));
-        System.out.println("The number of nodes in the strength chart is: " + numNodes(Main.strength));
-        System.out.println("The number of edges in total in Strength graph is " + totalEdges(Main.strength));
-        System.out.println("Max node degree is " + maxNodeDegree(Main.strength));
-        System.out.println("Min node degree is " + minNodeDegree(Main.strength));
-
-        PokemonStats weakStats = new PokemonStats(Main.weakness);
-        System.out.println("The nodes in the weak graph are: " + getNodes(Main.weakness));
-        System.out.println("The number of nodes in the weak chart is: " + numNodes(Main.weakness));
-        System.out.println("The number of edges in total in weakness graph is " + totalEdges(Main.weakness));
-        System.out.println("Max node degree is " + maxNodeDegree(Main.weakness));
-        System.out.println("Min node degree is " + minNodeDegree(Main.strength));
-
-        // ystem.out.println(getEdges(Main.strength));
-    }
-
     public PokemonStats(MutableGraph<String> graph) {
         Set<String> typesSet = graph.nodes();
         typesList = new ArrayList<>();
@@ -48,7 +23,6 @@ public class PokemonStats {
         numPerNode = new Hashtable<String, Integer>(); // initialize hashtable
         // match degree to the type/node
         for (String type : typesList) {
-            ;
             numPerNode.put(type, graph.degree(type));
         }
     }
@@ -64,7 +38,7 @@ public class PokemonStats {
      * @return int number of nodes
      */
     public static int numNodes(MutableGraph<String> graph) {
-        return typesList.size();
+        return graph.nodes().size();
     }
 
     /**
@@ -74,12 +48,11 @@ public class PokemonStats {
      * @return int number of edges in the graph
      */
     public static int totalEdges(MutableGraph<String> graph) {
-        return nEdge.size();
+        return graph.edges().size();
     }
 
     public static Set<EndpointPair<String>> getEdges(MutableGraph<String> graph) {
-        Set<EndpointPair<String>> edges = graph.edges();
-        return edges;
+        return graph.edges();
     }
 
     /**
@@ -112,7 +85,6 @@ public class PokemonStats {
             }
         }
         return numPerNode.get(typesList.get(minIndex));
-
     }
 
     public static int avgNodeDegree(MutableGraph<String> graph) {
@@ -134,13 +106,19 @@ public class PokemonStats {
         return graph.degree(n);
     }
 
-    public static int numStrongerThan(MutableGraph<String> strGraph, String n) {
-        return strGraph.inDegree(n);
+    public static int numOutDegree(MutableGraph<String> strGraph, String n) {
+        return strGraph.outDegree(n);
     }
 
-    public static int numWeakerThan(MutableGraph<String> wkGraph, String n) {
+    public static int numInDegree(MutableGraph<String> wkGraph, String n) {
         return wkGraph.inDegree(n);
     }
+
+    // public static ArrayList<String> pokemonInTypes(PokeTable_Test table, String
+    // type) {
+    // ArrayList<String> pkm = new ArrayList<String>();
+
+    // }
 
     /**
      * returns the node that n is stronger than
@@ -157,9 +135,65 @@ public class PokemonStats {
         return "";
     }
 
-    public static String BreathFirstTraversal(MutableGraph<String> graph) {
-        return "";
+    /**
+     * Breadth first traversal starting from node start
+     * 
+     * @param graph
+     * @param start
+     * @return
+     */
+    public static void BreadthFirstTraversal(MutableGraph<String> graph, String start) {
+        ArrayDeque<String> queue = new ArrayDeque<String>();
+        ArrayDeque<String> visited = new ArrayDeque<String>();
 
+        visited.add(start);
+        queue.add(start);
+
+        System.out.println("Commencing Breadth First Traversal at type " + start);
+
+        while (!queue.isEmpty()) {
+            String visitingNode = queue.pollFirst();
+            Set<String> adjNodes = graph.adjacentNodes(visitingNode);
+
+            for (String n : adjNodes) {
+                if (!visited.contains(n)) {
+                    visited.addLast(n);
+                    queue.addLast(n);
+                }
+            }
+        }
+        System.out.println(visited.toString());
+
+    }
+
+    public static void main(String[] args) {
+        try {
+            Main.strengthMultiplier();
+            // Main.weaknessMultiplier();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
+        PokemonStats strengthStats = new PokemonStats(Main.strength);
+
+        System.out.println("The nodes in the Strength graph are: " + getNodes(Main.strength));
+        System.out.println("The number of nodes in the strength chart is: " + numNodes(Main.strength));
+        System.out.println("The number of edges in total in Strength graph is " + totalEdges(Main.strength));
+        System.out.println("Max node degree is " + maxNodeDegree(Main.strength));
+        System.out.println("Min node degree is " + minNodeDegree(Main.strength));
+
+        // PokemonStats weakStats = new PokemonStats(Main.weakness);
+        // System.out.println("The nodes in the weak graph are: " +
+        // getNodes(Main.weakness));
+        // System.out.println("The number of nodes in the weak chart is: " +
+        // numNodes(Main.weakness));
+        // System.out.println("The number of edges in total in weakness graph is " +
+        // totalEdges(Main.weakness));
+        // System.out.println("Max node degree is " + maxNodeDegree(Main.weakness));
+        // System.out.println("Min node degree is " + minNodeDegree(Main.strength));
+
+        BreadthFirstTraversal(Main.strength, "Ice");
+
+        // ystem.out.println(getEdges(Main.strength));
     }
 
 }
