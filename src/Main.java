@@ -204,5 +204,4 @@ class Main {
         }
         new GraphDisplay(strength);
     }
-
 }
