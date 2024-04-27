@@ -12,6 +12,31 @@ public class PokemonStats {
     private static Set<EndpointPair<String>> nEdge; // sets of edges
     private static Hashtable<String, Integer> numPerNode; // <type, number of edges connected to it>
 
+    public static void main(String[] args) {
+        try {
+            Main.strengthMultiplier();
+            Main.weaknessMultiplier();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
+        PokemonStats strengthStats = new PokemonStats(Main.strength);
+
+        System.out.println("The nodes in the Strength graph are: " + getNodes(Main.strength));
+        System.out.println("The number of nodes in the strength chart is: " + numNodes(Main.strength));
+        System.out.println("The number of edges in total in Strength graph is " + totalEdges(Main.strength));
+        System.out.println("Max node degree is " + maxNodeDegree(Main.strength));
+        System.out.println("Min node degree is " + minNodeDegree(Main.strength));
+
+        PokemonStats weakStats = new PokemonStats(Main.weakness);
+        System.out.println("The nodes in the weak graph are: " + getNodes(Main.weakness));
+        System.out.println("The number of nodes in the weak chart is: " + numNodes(Main.weakness));
+        System.out.println("The number of edges in total in weakness graph is " + totalEdges(Main.weakness));
+        System.out.println("Max node degree is " + maxNodeDegree(Main.weakness));
+        System.out.println("Min node degree is " + minNodeDegree(Main.strength));
+
+        // ystem.out.println(getEdges(Main.strength));
+    }
+
     public PokemonStats(MutableGraph<String> graph) {
         Set<String> typesSet = graph.nodes();
         typesList = new ArrayList<>();
@@ -132,28 +157,9 @@ public class PokemonStats {
         return "";
     }
 
-    public static void main(String[] args) {
-        try {
-            Main.strengthMultiplier();
-            Main.weaknessMultiplier();
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        }
-        PokemonStats strengthStats = new PokemonStats(Main.strength);
+    public static String BreathFirstTraversal(MutableGraph<String> graph) {
+        return "";
 
-        System.out.println("The nodes in the Strength graph are: " + getNodes(Main.strength));
-        System.out.println("The number of nodes in the strength chart is: " + numNodes(Main.strength));
-        System.out.println("The number of edges in total in Strength graph is " + totalEdges(Main.strength));
-        System.out.println("Max node degree is " + maxNodeDegree(Main.strength));
-        System.out.println("Min node degree is " + minNodeDegree(Main.strength));
-
-        PokemonStats weakStats = new PokemonStats(Main.weakness);
-        System.out.println("The nodes in the weak graph are: " + getNodes(Main.weakness));
-        System.out.println("The number of nodes in the weak chart is: " + numNodes(Main.weakness));
-        System.out.println("The number of edges in total in weakness graph is " + totalEdges(Main.weakness));
-        System.out.println("Max node degree is " + maxNodeDegree(Main.weakness));
-        System.out.println("Min node degree is " + minNodeDegree(Main.strength));
-
-        // ystem.out.println(getEdges(Main.strength));
     }
+
 }
