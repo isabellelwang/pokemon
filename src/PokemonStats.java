@@ -13,6 +13,7 @@ public class PokemonStats {
     private static Set<EndpointPair<String>> nEdge; // sets of edges
     private static Hashtable<String, Integer> numPerNode; // <type, number of edges connected to it>
 
+    // running
     public static void main(String[] args) {
         stateract();
     }
@@ -79,8 +80,8 @@ public class PokemonStats {
     /**
      * node with the maximum degree
      * 
-     * @param graph
-     * @return
+     * @param graph Mutable graph
+     * @return maximum degree
      */
     public static int maxFoes(MutableGraph<String> graph) {
         int maxIndex = 0;
@@ -95,8 +96,8 @@ public class PokemonStats {
     /**
      * return node with minimum degree
      * 
-     * @param graph
-     * @return
+     * @param graph MutableGraph
+     * @return int minimum degree of the graph
      */
     public static int minFoes(MutableGraph<String> graph) {
         int minIndex = 0;
@@ -158,7 +159,7 @@ public class PokemonStats {
     /**
      * Prints the statistics of the graph
      * 
-     * @param g
+     * @param g Mutable graph
      */
     public static void printStats(MutableGraph<String> g) {
         System.out.println("The nodes in the graph are: " + getPokemonTypes(g));
@@ -169,11 +170,10 @@ public class PokemonStats {
     }
 
     /**
-     * Breadth first traversal starting from node start
+     * runs breadth first traversal at a starting node
      * 
-     * @param graph
-     * @param start
-     * @return
+     * @param graph Mutablegraph g
+     * @param start String node to start
      */
     public static void BreadthFirstTraversal(MutableGraph<String> graph, String start) {
         ArrayDeque<String> queue = new ArrayDeque<String>();
@@ -198,6 +198,11 @@ public class PokemonStats {
         System.out.println(visited.toString());
     }
 
+    /**
+     * different user optoins
+     * 
+     * @param l Arraylist to add the options
+     */
     private static void userOptions(ArrayList<String> l) {
         l.add("print stats");
         l.add("run breadth first traversal");
@@ -228,91 +233,91 @@ public class PokemonStats {
 
         System.out.println("What would you like to do?");
         System.out.println(
-                "print stats \nrun breadth first traversal \nsee in degree \nsee out degree \nsee number of degrees");
-        String response = input.nextLine().toLowerCase();
+                "print stats \nrun breadth first traversal \nsee in degree \nsee out degree \nsee number of degrees \nexit");
+        String response = input.nextLine();
 
-        // while (!options.contains(response)) {
-        // System.out.println("What would you like to do?");
-        // System.out.println(
-        // "print stats \nrun breadth first traversal \nsee in degree \nsee out degree
-        // \nsee number of degrees \nexit");
-        // response = input.nextLine();
+        while (options.contains(response) && !response.equals("exit")) {
+            switch (response) {
+                case "print stats":
+                    printStats(Main.strength);
+                    printStats(Main.weakness);
+                    break;
 
-        switch (response) {
-            case "print stats":
-                printStats(Main.strength);
-                printStats(Main.weakness);
-                break;
-
-            case "run breadth first traversal":
-                System.out.println(getPokemonTypes(Main.strength));
-                System.out.println("Which type would you like to start at?");
-                response = input.nextLine();
-
-                while (!typesList.contains(response)) {
+                case "run breadth first traversal":
+                    System.out.println(getPokemonTypes(Main.strength));
                     System.out.println("Which type would you like to start at?");
                     response = input.nextLine();
-                }
 
-                System.out.println("Breadth First Traversal Strength Graph: ");
-                BreadthFirstTraversal(Main.strength, response);
-                System.out.println("Breadth First Traversal Weakness Graph: ");
-                BreadthFirstTraversal(Main.weakness, response);
-                break;
+                    while (!typesList.contains(response)) {
+                        System.out.println("Which type would you like to start at?");
+                        response = input.nextLine();
+                    }
 
-            case "see in degree":
-                System.out.println(getPokemonTypes(Main.strength));
-                System.out.println("Which type would you like to see?");
-                response = input.nextLine();
+                    System.out.println("Breadth First Traversal Strength Graph: ");
+                    BreadthFirstTraversal(Main.strength, response);
+                    System.out.println("Breadth First Traversal Weakness Graph: ");
+                    BreadthFirstTraversal(Main.weakness, response);
+                    break;
 
-                while (!typesList.contains(response)) {
+                case "see in degree":
+                    System.out.println(getPokemonTypes(Main.strength));
                     System.out.println("Which type would you like to see?");
                     response = input.nextLine();
-                }
 
-                System.out.println("In Degree of type" + response + " in Strength Graph");
-                numInDegree(Main.strength, response);
-                System.out.println("In Degree of type" + response + " in Weakness Graph");
-                numInDegree(Main.weakness, response);
-                break;
+                    while (!typesList.contains(response)) {
+                        System.out.println("Which type would you like to see?");
+                        response = input.nextLine();
+                    }
 
-            case "see out degree":
-                System.out.println(getPokemonTypes(Main.strength));
-                System.out.println("Which type would you like to see?");
-                response = input.nextLine();
+                    System.out.println("In Degree of type" + response + " in Strength Graph");
+                    System.out.println(numInDegree(Main.strength, response));
+                    System.out.println("In Degree of type" + response + " in Weakness Graph");
+                    System.out.println(numInDegree(Main.weakness, response));
+                    break;
 
-                while (!typesList.contains(response)) {
+                case "see out degree":
+                    System.out.println(getPokemonTypes(Main.strength));
                     System.out.println("Which type would you like to see?");
                     response = input.nextLine();
-                }
 
-                System.out.println("Out Degree of type" + response + " in Strength Graph");
-                numOutDegree(Main.strength, response);
-                System.out.println("Out Degree of type" + response + " in Weakness Graph");
-                numOutDegree(Main.weakness, response);
-                break;
+                    while (!typesList.contains(response)) {
+                        System.out.println("Which type would you like to see?");
+                        response = input.nextLine();
+                    }
 
-            case "see number of degrees":
-                System.out.println(getPokemonTypes(Main.strength));
-                System.out.println("Which type would you like to see?");
-                response = input.nextLine();
+                    System.out.println("Out Degree of type" + response + " in Strength Graph");
+                    System.out.println(numOutDegree(Main.strength, response));
+                    System.out.println("Out Degree of type" + response + " in Weakness Graph");
+                    System.out.println(numOutDegree(Main.weakness, response));
+                    break;
 
-                while (!typesList.contains(response)) {
+                case "see number of degrees":
+                    System.out.println(getPokemonTypes(Main.strength));
                     System.out.println("Which type would you like to see?");
                     response = input.nextLine();
-                }
 
-                System.out.println("Number of degrees for type" + response + " in Strength Graph");
-                numDegrees(Main.strength, response);
-                System.out.println("Number of degrees for type" + response + " in Weakness Graph");
-                numDegrees(Main.weakness, response);
-                break;
+                    while (!typesList.contains(response)) {
+                        System.out.println("Which type would you like to see?");
+                        response = input.nextLine();
+                    }
 
-            case "exit":
-                break;
+                    System.out.println("Number of degrees for type" + response + " in Strength Graph");
+                    System.out.println(numDegrees(Main.strength, response));
+                    System.out.println("Number of degrees for type" + response + " in Weakness Graph");
+                    System.out.println(numDegrees(Main.weakness, response));
+                    break;
+
+                case "exit":
+                    break;
+            }
+
+            System.out.print("Press enter");
+            input.nextLine();
+            System.out.println("What would you like to do?");
+            System.out.println(
+                    "print stats \nrun breadth first traversal \nsee in degree \nsee out degree\nsee number of degrees \nexit");
+            response = input.nextLine();
         }
-        // }
-
     }
 
 }
