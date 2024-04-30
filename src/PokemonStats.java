@@ -231,11 +231,11 @@ public class PokemonStats {
                 "print stats \nrun breadth first traversal \nsee in degree \nsee out degree \nsee number of degrees");
         String response = input.nextLine().toLowerCase();
 
-        while (!options.contains(response)) {
+        //while (!options.contains(response)) {
             System.out.println("What would you like to do?");
             System.out.println(
                     "print stats \nrun breadth first traversal \nsee in degree \nsee out degree \nsee number of degrees \nexit");
-            response = input.nextLine().toLowerCase();
+            response = input.nextLine();
 
             switch (response) {
                 case "print stats":
@@ -310,7 +310,7 @@ public class PokemonStats {
                 case "exit":
                     break;
             }
-        }
+       // }
 
     }
 

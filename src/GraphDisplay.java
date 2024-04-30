@@ -99,33 +99,33 @@ public class GraphDisplay extends JComponent implements ActionListener {
   // you have a very good reason and know exactly why you are doing it. ;)
   /** Constructor starts with empty graph */
   @SuppressWarnings("unchecked")
-  public GraphDisplay(Graph<?> g) {
+  public GraphDisplay(Graph<?> g, String graphName) {
     super();
     this.graph = g;
     isDirected = g.isDirected();
-    commonSetup();
+    commonSetup(graphName);
   }
 
   /** Constructor starts with empty graph */
   @SuppressWarnings("unchecked")
-  public GraphDisplay(ValueGraph<?, ?> g) {
+  public GraphDisplay(ValueGraph<?, ?> g, String graphName) {
     super();
     this.vgraph = g;
     isDirected = g.isDirected();
-    commonSetup();
+    commonSetup(graphName);
   }
 
   /** Constructor starts with empty graph */
   @SuppressWarnings("unchecked")
-  public GraphDisplay(Network<?, ?> g) {
+  public GraphDisplay(Network<?, ?> g, String graphName) {
     super();
     this.net = g;
     isDirected = g.isDirected();
-    commonSetup();
+    commonSetup(graphName);
   }
 
   /** Method to finish the common setup for all three graph types */
-  private void commonSetup() {
+  private void commonSetup(String graphName) {
     locMap = new HashMap<Object, Point>();
     assignLocations();
     colorMap = new HashMap<Object, Color>();
@@ -135,7 +135,7 @@ public class GraphDisplay extends JComponent implements ActionListener {
 
     setMinimumSize(CANVAS_SIZE);
     setPreferredSize(CANVAS_SIZE);
-    openWindow();
+    openWindow(graphName);
   }
 
   /** Assigns nodes to points around an oval */
@@ -153,12 +153,12 @@ public class GraphDisplay extends JComponent implements ActionListener {
   }
 
   /** Sets up the GUI window */
-  private void openWindow() {
+  private void openWindow(String graphName) {
     // Make sure we have nice window decorations.
     JFrame.setDefaultLookAndFeelDecorated(true);
 
     // Create and set up the window.
-    frame = new JFrame("Graph Display");
+    frame = new JFrame(graphName);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     // Add components

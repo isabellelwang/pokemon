@@ -149,7 +149,10 @@ class Main {
             types = arrayify(line);
 
             for (String type : types) {
-                weakness.addNode(type);
+                if (!type.equals("Attacking")) {
+                    weakness.addNode(type);
+
+                }
             }
 
             while (scan.hasNext()) {
@@ -169,7 +172,7 @@ class Main {
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
-        new GraphDisplay(weakness);
+        new GraphDisplay(weakness, "Weakness Graph");
     }
 
     public static void strengthMultiplier() throws FileNotFoundException {
@@ -183,8 +186,12 @@ class Main {
             types = arrayify(line);
 
             for (String type : types) {
-                strength.addNode(type);
+                if (!type.equals("Attacking")) {
+                    strength.addNode(type);
+
+                }
             }
+
             while (scan.hasNext()) {
                 line = scan.nextLine();
                 ArrayList<String> data = arrayify(line);
@@ -202,6 +209,6 @@ class Main {
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
-        new GraphDisplay(strength);
+        new GraphDisplay(strength, "Strength Graph");
     }
 }
