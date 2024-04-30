@@ -16,7 +16,7 @@ public class PokeTable {
     public PokeTable() {
         this.table = new Hashtable<>();
 
-        File file = new File("gen01.csv");
+        File file = new File("pokemon/gen01.csv");
 
         try {
             Scanner sc = new Scanner(file);
@@ -108,10 +108,24 @@ public class PokeTable {
         Scanner in = new Scanner(System.in);
 
         System.out.println("What's ur fav pokemon");
-        String pokemon = in.nextLine().toLowerCase(); // get input
+        boolean valid = false; 
+        String pokemon = "";
+
+        // Look here! It's the loop! 
+        while (!valid){
+            pokemon = in.nextLine().toLowerCase(); // get input
+            if (poketable.table.containsKey(pokemon)){
+                valid = true;
+            } else {
+                System.out.println("Your Pokemon is either in gen 1 or NOT valid. TRY AGAIN.");
+            }
+        }
 
         System.out.println(pokemon + " is strongest against " + poketable.easyOpps(pokemon));
         System.out.println(pokemon + " is weakest against " + poketable.hardOpps(pokemon));
+
+
+   
 
         in.close();
     }
