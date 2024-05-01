@@ -161,12 +161,10 @@ public class PokemonStats {
      * 
      * @param g Mutable graph
      */
-    public static void printStats(MutableGraph<String> g) {
-        System.out.println("The nodes in the graph are: " + getPokemonTypes(g));
-        System.out.println("The number of nodes in the chart is: " + numNodes(g));
-        System.out.println("The number of edges in total in graph is " + totalEdges(g));
-        System.out.println("Max node degree is " + maxFoes(g));
-        System.out.println("Min node degree is " + minFoes(g));
+    public static String printStats(MutableGraph<String> g) {
+        return ("The nodes in the graph are: " + getPokemonTypes(g) + "\nThe number of nodes in the chart is: "
+                + numNodes(g) + "\nThe number of edges in total in graph is " + totalEdges(g) + "\nMax node degree is "
+                + maxFoes(g) + "\nMin node degree is " + minFoes(g));
     }
 
     /**
@@ -239,8 +237,8 @@ public class PokemonStats {
         while (options.contains(response) && !response.equals("exit")) {
             switch (response) {
                 case "print stats":
-                    printStats(Main.strength);
-                    printStats(Main.weakness);
+                    System.out.println(printStats(Main.strength));
+                    System.out.println(printStats(Main.weakness));
                     break;
 
                 case "run breadth first traversal":
@@ -318,6 +316,7 @@ public class PokemonStats {
                     "print stats \nrun breadth first traversal \nsee in degree \nsee out degree\nsee number of degrees \nexit");
             response = input.nextLine();
         }
+        input.close();
     }
 
 }

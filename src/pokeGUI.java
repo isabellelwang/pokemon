@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import java.io.FileNotFoundException;
 
@@ -100,6 +102,9 @@ public class pokeGUI extends JFrame {
 
     public static void printStats() {
         JFrame statsFrame = new JFrame("Pokemon Stats");
+        PokemonStats strengthStats = new PokemonStats(Main.getStrength());
+        PokemonStats weakStats = new PokemonStats(Main.getWeakness());
+
         statsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         statsFrame.setSize(500, 500);
         try {
@@ -121,13 +126,56 @@ public class pokeGUI extends JFrame {
         Choice choice = new Choice();
         choice.setFont(new Font("Monospace 821 BT", Font.PLAIN, 18));
         choice.add("print stats");
+        // System.out.println(choice.getItem(0));
         choice.add("run breadth first traversal");
         choice.add("see in degrees");
         choice.add("see out degrees");
         choice.add("see number of degrees");
 
+        // ItemListener il = new ItemListener() {
+        // public void itemStateChanged(ItemEvent itemEvent) {
+
+        // if (choice.getSelectedIndex() == 0) {
+
+        // }
+
+        // }
+        // };
+        Label l = new Label();
+        l.setAlignment(Label.CENTER);
+        l.setSize(400, 100);
+
+        choice.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent itemEvent) {
+                l.setText(choice.getSelectedItem());
+                String selection = (String) choice.getSelectedItem();
+                switch (selection) {
+                    case "print stats":
+                        l.setText(PokemonStats.printStats(Main.strength));
+
+                    case "run breadth first traversal":
+                        break;
+
+                    case "see in degree":
+
+                        break;
+
+                    case "see out degree":
+
+                        break;
+
+                    case "see number of degrees":
+                        break;
+
+                }
+
+            }
+
+        });
+
         body.add(text);
         body.add(choice);
+        body.add(l);
 
         statsFrame.add(header, BorderLayout.NORTH);
         statsFrame.add(body, BorderLayout.CENTER);
@@ -136,6 +184,30 @@ public class pokeGUI extends JFrame {
         statsFrame.setVisible(true);
         statsFrame.setResizable(true);
     }
+
+    // public void itemStateChanged(ItemEvent i) {
+    // JFrame statsFrame = new JFrame("Pokemon Stats");
+    // statsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    // statsFrame.setSize(500, 500);
+    // try {
+    // UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // }
+    // JPanel header = new JPanel();
+    // JLabel title = new JLabel("Project Stats");
+    // title.setFont(new Font("Britannic Bold", Font.BOLD, 50));
+    // header.add(title);
+
+    // System.out.println('i');
+    // if (choice.getSelectedIndex() == 0) {
+    // PokemonStats.printStats(Main.strength);
+    // PokemonStats.printStats(Main.weakness);
+    // } else if (choice.getSelectedIndex() == 1) {
+    // System.out.println("your mom");
+    // }
+
+    // }
 
     /**
      * Main method for the GUI
