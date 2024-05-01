@@ -6,8 +6,6 @@ import java.util.Scanner;
 
 public class PokeTable {
     private Hashtable<String, ArrayList<String>> table;
-    
-
 
     /**
      * Constructor for table of pokemon and their types
@@ -16,7 +14,7 @@ public class PokeTable {
     public PokeTable() {
         this.table = new Hashtable<>();
 
-        File file = new File("pokemon/gen01.csv");
+        File file = new File("gen01.csv");
 
         try {
             Scanner sc = new Scanner(file);
@@ -38,8 +36,6 @@ public class PokeTable {
             System.out.println("File not found");
         }
     }
-
-    
 
     /**
      * Finds types of given pokemon
@@ -108,13 +104,13 @@ public class PokeTable {
         Scanner in = new Scanner(System.in);
 
         System.out.println("What's ur fav pokemon");
-        boolean valid = false; 
+        boolean valid = false;
         String pokemon = "";
 
-        // Look here! It's the loop! 
-        while (!valid){
+        // Look here! It's the loop!
+        while (!valid) {
             pokemon = in.nextLine().toLowerCase(); // get input
-            if (poketable.table.containsKey(pokemon)){
+            if (poketable.table.containsKey(pokemon)) {
                 valid = true;
             } else {
                 System.out.println("Your Pokemon is either in gen 1 or NOT valid. TRY AGAIN.");
@@ -123,9 +119,6 @@ public class PokeTable {
 
         System.out.println(pokemon + " is strongest against " + poketable.easyOpps(pokemon));
         System.out.println(pokemon + " is weakest against " + poketable.hardOpps(pokemon));
-
-
-   
 
         in.close();
     }

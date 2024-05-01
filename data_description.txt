@@ -8,3 +8,5 @@ Number of Nodes:577
 Number of Edges: 
 
 Other Qualities: Directed Value Graph. Self Edges not allowed. 
+
+Additional Information: The data shows the different multipliers, with a multiplier of 2 meaning the pokemon is more powerful and 0.5 as a weaker multiplier.

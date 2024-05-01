@@ -269,9 +269,9 @@ public class PokemonStats {
                         response = input.nextLine();
                     }
 
-                    System.out.println("In Degree of type" + response + " in Strength Graph");
+                    System.out.println("In Degree of type " + response + " in Strength Graph");
                     System.out.println(numInDegree(Main.strength, response));
-                    System.out.println("In Degree of type" + response + " in Weakness Graph");
+                    System.out.println("In Degree of type " + response + " in Weakness Graph");
                     System.out.println(numInDegree(Main.weakness, response));
                     break;
 
@@ -285,9 +285,9 @@ public class PokemonStats {
                         response = input.nextLine();
                     }
 
-                    System.out.println("Out Degree of type" + response + " in Strength Graph");
+                    System.out.println("Out Degree of type " + response + " in Strength Graph");
                     System.out.println(numOutDegree(Main.strength, response));
-                    System.out.println("Out Degree of type" + response + " in Weakness Graph");
+                    System.out.println("Out Degree of type " + response + " in Weakness Graph");
                     System.out.println(numOutDegree(Main.weakness, response));
                     break;
 
@@ -301,9 +301,9 @@ public class PokemonStats {
                         response = input.nextLine();
                     }
 
-                    System.out.println("Number of degrees for type" + response + " in Strength Graph");
+                    System.out.println("Number of degrees for type " + response + " in Strength Graph");
                     System.out.println(numDegrees(Main.strength, response));
-                    System.out.println("Number of degrees for type" + response + " in Weakness Graph");
+                    System.out.println("Number of degrees for type " + response + " in Weakness Graph");
                     System.out.println(numDegrees(Main.weakness, response));
                     break;
 
@@ -311,7 +311,7 @@ public class PokemonStats {
                     break;
             }
 
-            System.out.print("Press enter");
+            System.out.print("PRESS ENTER TO CONTINUE: ");
             input.nextLine();
             System.out.println("What would you like to do?");
             System.out.println(
