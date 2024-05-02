@@ -14,7 +14,7 @@ public class PokeTable {
     public PokeTable() {
         this.table = new Hashtable<>();
 
-        File file = new File("pokemon/gen01.csv");
+        File file = new File("gen01.csv");
 
         try {
             Scanner sc = new Scanner(file);

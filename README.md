@@ -32,6 +32,7 @@ We made methods to access the data in our graph.
 First, we made a hashtable to align each pokemon with their types. The pokemons are the keys while the types are the values. Some pokemon had multiple types, so we set it as a list of types. Then, we constructed methods to access the types. We added generic methods that showed the number of degrees per node, the node with the maximum degree, the node with the minimum degree, the average degree number of the nodes. We also made a breadth first traversal for the types in the list. To make this more interactive, we used Scanner for users to choose what data they want to view. 
 
 Phase 3: 
+We made 
 
 We made a GUI with multiple sections to access different parts of our statistical analysis. Two of the pages hold the graphs. One allows you to analyze individual pokemon. And the last allows to to access specific statistics, holding options in a drop down menu for easy access. 
 

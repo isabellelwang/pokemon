@@ -18,7 +18,7 @@ public class pokeGUI extends JFrame {
      */
     public pokeGUI() {
         setTitle("CSC210 Final Project: PokeDex");
-        img = Toolkit.getDefaultToolkit().getImage("pokemon/src/pokeball.png");
+        img = Toolkit.getDefaultToolkit().getImage("src/pokeball.png");
         setSize(500, 600);
 
         MediaTracker track = new MediaTracker(this);
@@ -167,6 +167,7 @@ public class pokeGUI extends JFrame {
 
                     case "run breadth first traversal":
                         body.add(promptType);
+                        body.add(typeChoice);
                         body.revalidate();
                         body.repaint();
                         typeChoice.addItemListener(i -> {

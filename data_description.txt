@@ -10,3 +10,4 @@ Number of Edges:
 Other Qualities: Directed Value Graph. Self Edges not allowed. 
 
 Additional Information: The data shows the different multipliers, with a multiplier of 2 meaning the pokemon is more powerful and 0.5 as a weaker multiplier.
+In our graph, we only calculated for gen01 pokemons with a total of 19 nodes for each graph. 51 edges for strength graph and 61 edges for weakness graph. 
