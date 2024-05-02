@@ -12,25 +12,25 @@ __Yes___ 2 pts: The program's output communicates the results in a clear and una
 
 __Yes___ 2 pts: The program is designed in a general way so that it would work for any dataset that follows the same format and could solve any problem of the category that your program is solving (e.g., nodes are not hardcoded) 
 
-_____ 2 pts: The usage of the program is clearly demonstrated in the `demo.txt` file (plus the `screenshot.png` file if applicable)
+___Yes__ 2 pts: The usage of the program is clearly demonstrated in the `demo.txt` file (plus the `screenshot.png` file if applicable)
 
 ## General Items (10 pts):
-_____ 4 pts: Program compiles without errors or warnings.
+___Yes__ 4 pts: Program compiles without errors or warnings.
 
-_____ 2 pts: Executes fully & consistently without crashing (exception/freeze).
+___yes__ 2 pts: Executes fully & consistently without crashing (exception/freeze).
 
-_____ 2 pt: Complies with style guidelines (missing items 1 pt each):
+__Yes___ 2 pt: Complies with style guidelines (missing items 1 pt each):
 
-      _____ Classes & class members all have Javadoc header comments.
+      ___Yes__ Classes & class members all have Javadoc header comments.
 
-      _____ Clear and consistent indentation of bracketed sections.
+      ____Yes_ Clear and consistent indentation of bracketed sections.
 
-      _____ Adheres to Java conventions on naming & capitalization.
+      ___Yes__ Adheres to Java conventions on naming & capitalization.
 
-      _____ Methods & variables all have clear and accurate names.
+      __Yes___ Methods & variables all have clear and accurate names.
 
-      _____ Methods avoid confusing side effects.
+      ____Yes_ Methods avoid confusing side effects.
 
-_____ 1 pt: All required files included with submission (including completed checklist file).
+____Yes_ 1 pt: All required files included with submission (including completed checklist file).
 
-_____ 1 pt: `readme.md` contains your reflection on the project and responses to all prompts.
+___Yes__ 1 pt: `readme.md` contains your reflection on the project and responses to all prompts.
