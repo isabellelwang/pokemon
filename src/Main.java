@@ -10,7 +10,7 @@ class Main {
     public static MutableGraph<String> weakness;
 
     public static void main(String[] args) throws FileNotFoundException {
-        File pokemonData = new File((args.length > 0) ? args[0] : "PokeTypeMatchupData.csv");
+        File pokemonData = new File((args.length > 0) ? args[0] : "pokemon/PokeTypeMatchupData.csv");
         String pokemon = pokemonData.getAbsolutePath();
         weaknessMultiplier();
         strengthMultiplier();
@@ -43,7 +43,7 @@ class Main {
     }
 
     public static void weaknessMultiplier() throws FileNotFoundException {
-        File strengthData = new File("chart.csv");
+        File strengthData = new File("pokemon/chart.csv");
         // HashMap<String,Integer> types = new HashMap<>();
         ArrayList<String> types = new ArrayList<>();
         weakness = GraphBuilder.directed().allowsSelfLoops(true).build();
@@ -78,7 +78,7 @@ class Main {
     }
 
     public static void strengthMultiplier() throws FileNotFoundException {
-        File strengthData = new File("chart.csv");
+        File strengthData = new File("pokemon/chart.csv");
         // HashMap<String,Integer> types = new HashMap<>();
         ArrayList<String> types = new ArrayList<>();
         strength = GraphBuilder.directed().allowsSelfLoops(true).build();

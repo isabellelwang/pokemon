@@ -19,7 +19,7 @@ public class pokeGUI extends JFrame {
      */
     public pokeGUI() {
         setTitle("CSC210 Final Project: PokeDex");
-        img = Toolkit.getDefaultToolkit().getImage("src/pokeball.png");
+        img = Toolkit.getDefaultToolkit().getImage("pokemon/src/pokeball.png");
         setSize(500, 600);
 
         // setExtendedState(JFrame.MAXIMIZED_BOTH);
