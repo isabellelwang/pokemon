@@ -78,9 +78,12 @@ public class pokeGUI extends JFrame {
                     String pokemon = input.getText();
                     textArea.append(pokemon + "\n");
                     input.setText("");
+                    if (!table.getTable().containsKey(pokemon)) {
+                        textArea.append("Your Pokemon is either in gen 1 or NOT valid. TRY AGAIN. \n");
+                    } 
                     textArea.append(pokemon + " is strongest against " + table.easyOpps(pokemon.toLowerCase()));
                     textArea.append("\n");
-                    textArea.append(pokemon + " is weakest against " + table.hardOpps(pokemon.toLowerCase()));
+                    textArea.append(pokemon + " is weakest against " + table.hardOpps(pokemon.toLowerCase()) + "\n");
                 });
                 DefaultCaret caret = (DefaultCaret) textArea.getCaret();
                 caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);

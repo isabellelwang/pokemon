@@ -90,6 +90,10 @@ public class PokeTable {
         return hardOpps;
     }
 
+    public Hashtable<String, ArrayList<String>> getTable(){
+        return this.table;
+    }
+
     public static void main(String[] args) {
 
         try {
