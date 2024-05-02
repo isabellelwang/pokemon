@@ -196,11 +196,13 @@ public class pokeGUI extends JFrame {
                             textArea.append(
                                     "In Degree of type " + typeChoice.getSelectedItem() + " in Strength Graph is ");
                             textArea.append(String
-                                    .valueOf(PokemonStats.numInDegree(Main.strength, typeChoice.getSelectedItem())));
+                                    .valueOf(PokemonStats.numInDegree(Main.strength, typeChoice.getSelectedItem()))
+                                    + "\n");
                             textArea.append(
                                     "\nIn Degree of type " + typeChoice.getSelectedItem() + " in Weakness Graph is ");
                             textArea.append(String
-                                    .valueOf(PokemonStats.numInDegree(Main.weakness, typeChoice.getSelectedItem())));
+                                    .valueOf(PokemonStats.numInDegree(Main.weakness, typeChoice.getSelectedItem()))
+                                    + "\n");
                         });
                         break;
 
@@ -215,11 +217,13 @@ public class pokeGUI extends JFrame {
                             textArea.append(
                                     "Out Degree of type " + typeChoice.getSelectedItem() + " in Strength Graph is ");
                             textArea.append(String
-                                    .valueOf(PokemonStats.numOutDegree(Main.strength, typeChoice.getSelectedItem())));
+                                    .valueOf(PokemonStats.numOutDegree(Main.strength, typeChoice.getSelectedItem()))
+                                    + "\n");
                             textArea.append(
                                     "\nOut Degree of type " + typeChoice.getSelectedItem() + " in Weakness Graph is ");
                             textArea.append(String
-                                    .valueOf(PokemonStats.numOutDegree(Main.weakness, typeChoice.getSelectedItem())));
+                                    .valueOf(PokemonStats.numOutDegree(Main.weakness, typeChoice.getSelectedItem()))
+                                    + "\n");
                         });
                         break;
 
