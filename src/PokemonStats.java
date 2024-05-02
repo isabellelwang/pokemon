@@ -173,7 +173,7 @@ public class PokemonStats {
      * @param graph Mutablegraph g
      * @param start String node to start
      */
-    public static void BreadthFirstTraversal(MutableGraph<String> graph, String start) {
+    public static String BreadthFirstTraversal(MutableGraph<String> graph, String start) {
         ArrayDeque<String> queue = new ArrayDeque<String>();
         ArrayDeque<String> visited = new ArrayDeque<String>();
 
@@ -193,7 +193,7 @@ public class PokemonStats {
                 }
             }
         }
-        System.out.println(visited.toString());
+        return visited.toString();
     }
 
     /**
