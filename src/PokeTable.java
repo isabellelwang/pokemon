@@ -90,10 +90,16 @@ public class PokeTable {
         return hardOpps;
     }
 
-    public Hashtable<String, ArrayList<String>> getTable(){
+    /**
+     * Getter method for the Poketable
+     * 
+     * @return Hashtable of the pokemon, type
+     */
+    public Hashtable<String, ArrayList<String>> getTable() {
         return this.table;
     }
 
+    // runnning
     public static void main(String[] args) {
 
         try {

@@ -9,6 +9,7 @@ class Main {
     public static MutableGraph<String> strength;
     public static MutableGraph<String> weakness;
 
+    // running method.
     public static void main(String[] args) throws FileNotFoundException {
         File pokemonData = new File((args.length > 0) ? args[0] : "pokemon/PokeTypeMatchupData.csv");
         String pokemon = pokemonData.getAbsolutePath();
@@ -16,6 +17,12 @@ class Main {
         strengthMultiplier();
     }
 
+    /**
+     * changes line in file to an arraylsit
+     * 
+     * @param line String line
+     * @return Arraylist of lines as each component
+     */
     public static ArrayList<String> arrayify(String line) {
         ArrayList<String> array = new ArrayList<>();
         String data = "";
@@ -28,6 +35,12 @@ class Main {
         return array;
     }
 
+    /**
+     * creates a hashmap for the index and the line in file
+     * 
+     * @param line String line in the file
+     * @return Hashmap with line as key and index as value.
+     */
     public static HashMap<String, Integer> hashify(String line) {
         HashMap<String, Integer> hashmap = new HashMap<>();
         String data = "";
@@ -42,9 +55,14 @@ class Main {
         return hashmap;
     }
 
+    /**
+     * Adds weak pokemons with multiplier of 0.5 in a graph
+     * 
+     * @throws FileNotFoundException file not found
+     */
     public static void weaknessMultiplier() throws FileNotFoundException {
         File strengthData = new File("pokemon/chart.csv");
-        // HashMap<String,Integer> types = new HashMap<>();
+
         ArrayList<String> types = new ArrayList<>();
         weakness = GraphBuilder.directed().allowsSelfLoops(true).build();
         try {
@@ -74,12 +92,17 @@ class Main {
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
-        // new GraphDisplay(weakness, "Weakness Graph");
+
     }
 
+    /**
+     * Adds strong pokemon with multiplier of 2 into a graph
+     * 
+     * @throws FileNotFoundException file not found
+     */
     public static void strengthMultiplier() throws FileNotFoundException {
         File strengthData = new File("pokemon/chart.csv");
-        // HashMap<String,Integer> types = new HashMap<>();
+
         ArrayList<String> types = new ArrayList<>();
         strength = GraphBuilder.directed().allowsSelfLoops(true).build();
         try {
@@ -109,17 +132,32 @@ class Main {
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
-        // new GraphDisplay(strength, "Strength Graph");
     }
 
+    /**
+     * getter method to access Strength graph
+     * 
+     * @return MutableGraph of strength graph
+     */
     public static MutableGraph<String> getStrength() {
         return strength;
     }
 
+    /**
+     * Getter method to access Weakness graph
+     * 
+     * @return MutableGraph of weakness graph
+     */
     public static MutableGraph<String> getWeakness() {
         return weakness;
     }
 
+    /**
+     * Displays graph into a new window
+     * 
+     * @param graph     mutable graph to be shown
+     * @param graphName label for the graph
+     */
     public static void showGraph(MutableGraph<String> graph, String graphName) {
         new GraphDisplay(graph, graphName);
     }

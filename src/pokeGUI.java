@@ -22,8 +22,6 @@ public class pokeGUI extends JFrame {
         img = Toolkit.getDefaultToolkit().getImage("pokemon/src/pokeball.png");
         setSize(500, 600);
 
-        // setExtendedState(JFrame.MAXIMIZED_BOTH);
-
         MediaTracker track = new MediaTracker(this);
         track.addImage(img, 0);
         try {
@@ -39,9 +37,6 @@ public class pokeGUI extends JFrame {
         });
     }
 
-    // public void paint(Graphics g){
-    // g.drawImage(img, 0, 0, null);
-    // }
     /**
      * Creates a new frame for the user to input a pokemon
      */
@@ -80,7 +75,7 @@ public class pokeGUI extends JFrame {
                     input.setText("");
                     if (!table.getTable().containsKey(pokemon)) {
                         textArea.append("Your Pokemon is either in gen 1 or NOT valid. TRY AGAIN. \n");
-                    } 
+                    }
                     textArea.append(pokemon + " is strongest against " + table.easyOpps(pokemon.toLowerCase()));
                     textArea.append("\n");
                     textArea.append(pokemon + " is weakest against " + table.hardOpps(pokemon.toLowerCase()) + "\n");
@@ -103,6 +98,9 @@ public class pokeGUI extends JFrame {
         });
     }
 
+    /**
+     * Displays stats for pokemon and types
+     */
     public static void printStats() {
         JFrame statsFrame = new JFrame("Pokemon Stats");
         PokemonStats strengthStats = new PokemonStats(Main.getStrength());
@@ -169,8 +167,7 @@ public class pokeGUI extends JFrame {
                         break;
 
                     case "run breadth first traversal":
-                        body.add(promptType); // BUG : Doesn't show up in page
-                        body.add(typeChoice);
+                        body.add(promptType);
                         body.revalidate();
                         body.repaint();
                         typeChoice.addItemListener(i -> {
@@ -189,7 +186,7 @@ public class pokeGUI extends JFrame {
                         break;
 
                     case "see in degrees":
-                        body.add(promptType); // BUG : Doesn't show up in page
+                        body.add(promptType);
                         body.add(typeChoice);
                         body.revalidate();
                         body.repaint();
@@ -210,7 +207,7 @@ public class pokeGUI extends JFrame {
                         break;
 
                     case "see out degrees":
-                        body.add(promptType); // BUG : Doesn't show up in page
+                        body.add(promptType);
                         body.add(typeChoice);
                         body.revalidate();
                         body.repaint();
@@ -231,7 +228,7 @@ public class pokeGUI extends JFrame {
                         break;
 
                     case "see number of degrees":
-                        body.add(promptType); // BUG : Doesn't show up in page
+                        body.add(promptType);
                         body.add(typeChoice);
                         body.revalidate();
                         body.repaint();
@@ -263,30 +260,6 @@ public class pokeGUI extends JFrame {
         statsFrame.setVisible(true);
         statsFrame.setResizable(true);
     }
-
-    // public void itemStateChanged(ItemEvent i) {
-    // JFrame statsFrame = new JFrame("Pokemon Stats");
-    // statsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    // statsFrame.setSize(500, 500);
-    // try {
-    // UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    // JPanel header = new JPanel();
-    // JLabel title = new JLabel("Project Stats");
-    // title.setFont(new Font("Britannic Bold", Font.BOLD, 50));
-    // header.add(title);
-
-    // System.out.println('i');
-    // if (choice.getSelectedIndex() == 0) {
-    // PokemonStats.printStats(Main.strength);
-    // PokemonStats.printStats(Main.weakness);
-    // } else if (choice.getSelectedIndex() == 1) {
-    // System.out.println("your mom");
-    // }
-
-    // }
 
     /**
      * Main method for the GUI
