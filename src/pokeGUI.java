@@ -3,7 +3,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
@@ -19,7 +21,7 @@ public class pokeGUI extends JFrame {
     public pokeGUI() {
         setTitle("CSC210 Final Project: PokeDex");
         img = Toolkit.getDefaultToolkit().getImage("src/pokeball.png");
-        setSize(500, 600);
+        setSize(550, 700);
 
         MediaTracker track = new MediaTracker(this);
         track.addImage(img, 0);
@@ -50,9 +52,14 @@ public class pokeGUI extends JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                JPanel panel = new JPanel();
-                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-                panel.setOpaque(true);
+                JPanel header = new JPanel();
+                JLabel title = new JLabel("Pokemon Analysis");
+                title.setFont(new Font("Britannic Bold", Font.BOLD, 50));
+                header.add(title);
+
+                JPanel body = new JPanel();
+                body.setLayout(new BoxLayout(body, BoxLayout.Y_AXIS));
+                body.setOpaque(true);
                 JTextArea textArea = new JTextArea(15, 50);
                 textArea.setWrapStyleWord(true);
                 textArea.setLineWrap(true);
@@ -61,10 +68,13 @@ public class pokeGUI extends JFrame {
                 JScrollPane scroller = new JScrollPane(textArea);
                 scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
                 scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
                 JPanel inputPanel = new JPanel();
                 inputPanel.setLayout(new FlowLayout());
                 JTextField input = new JTextField(20);
                 input.setFont(new Font("Monospace 821 BT", Font.PLAIN, 18));
+                input.setAlignmentX(CENTER_ALIGNMENT);
+
                 pokeButton button = new pokeButton("Enter");
                 textArea.append("What's ur fav pokemon? (Gen 1 only)\n");
                 button.addActionListener(e -> {
@@ -81,32 +91,90 @@ public class pokeGUI extends JFrame {
                 });
                 DefaultCaret caret = (DefaultCaret) textArea.getCaret();
                 caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-                panel.add(scroller);
+                body.add(scroller);
                 inputPanel.add(input);
                 inputPanel.add(button);
-                panel.add(inputPanel);
-                frame.getContentPane().add(BorderLayout.CENTER, panel);
+                body.add(inputPanel);
+
+                frame.getContentPane().add(BorderLayout.NORTH, header);
+                frame.getContentPane().add(BorderLayout.CENTER, body);
                 frame.pack();
                 frame.setLocationByPlatform(true);
                 frame.setIconImage(img);
                 frame.setVisible(true);
-                frame.setResizable(true);
+                frame.setResizable(false);
                 input.requestFocus();
 
             }
         });
     }
 
-/**
- * Run Stats
- */
+    public static void pokemonList() {
+        File pokemon = new File("gen01.csv");
+
+        JFrame frame = new JFrame("Pokemon List");
+        frame.setSize(550, 700);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        JPanel header = new JPanel();
+        JLabel title = new JLabel("Pokemon List");
+        title.setFont(new Font("Britannic Bold", Font.BOLD, 50));
+        header.add(title);
+
+        JPanel body = new JPanel();
+        body.setLayout(new BoxLayout(body, BoxLayout.Y_AXIS));
+        body.setOpaque(true);
+        JTextArea textArea = new JTextArea();
+        textArea.setWrapStyleWord(true);
+        textArea.setLineWrap(true);
+        textArea.setEditable(false);
+        textArea.setFont(new Font("Monospace 821 BT", Font.PLAIN, 18));
+        JScrollPane scroller = new JScrollPane(textArea);
+        scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        try {
+            Scanner scan = new Scanner(pokemon);
+            String line = scan.nextLine();
+            String Number = line.split(",")[0];
+            String Name = line.split(",")[1];
+            while (scan.hasNext()) {
+                textArea.append(Number + "   " + Name + "\n");
+                line = scan.nextLine();
+                Number = line.split(",")[0];
+                Name = line.split(",")[1];
+            }
+            textArea.append(Number + "   " + Name + "\n");
+            scan.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
+
+        DefaultCaret caret = (DefaultCaret) textArea.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        body.add(scroller);
+        // body.add(textArea);
+
+        frame.add(header, BorderLayout.NORTH);
+        frame.add(body, BorderLayout.CENTER);
+        frame.setIconImage(img);
+        frame.setVisible(true);
+    }
+
+    /**
+     * Run Stats
+     */
     public static void printStats() {
         JFrame statsFrame = new JFrame("Pokemon Stats");
         PokemonStats strengthStats = new PokemonStats(Main.getStrength());
         PokemonStats weakStats = new PokemonStats(Main.getWeakness());
 
         statsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        statsFrame.setSize(500, 500);
+        statsFrame.setSize(550, 700);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -245,9 +313,7 @@ public class pokeGUI extends JFrame {
                         });
                         break;
                 }
-
             }
-
         });
         body.add(textArea);
         body.add(text);
@@ -263,7 +329,7 @@ public class pokeGUI extends JFrame {
 
     /**
      * Main method for the GUI
-     * 
+     *
      * @param args command line arguments(ignored)
      * @throws FileNotFoundException if data files not found
      */
@@ -282,6 +348,7 @@ public class pokeGUI extends JFrame {
         // header components
         JLabel title = new JLabel("PokeDex");
         title.setFont(new Font("Britannic Bold", Font.BOLD, 100));
+
         // add components to header
         header.add(title);
         // -----------------------------------------------------------------------------
@@ -296,6 +363,15 @@ public class pokeGUI extends JFrame {
         c.weighty = 0.25; // c.weighty=0.5;
 
         // body components
+        JTextArea textArea = new JTextArea();
+        textArea.setWrapStyleWord(true);
+        textArea.setLineWrap(true);
+        textArea.setEditable(false);
+        textArea.setFont(new Font("Monospace 821 BT", Font.PLAIN, 14));
+        textArea.append(
+                "Welcome to the Gen 1 PokeDex! \n\nThis program will help you analyze Pokemon types. You can see which pokemon types are strong/weak against each other, and even analyze the strength of a specific pokemon!\n");
+        textArea.append("\n\nClick on the buttons below to begin: \n");
+
         pokeButton strength = new pokeButton("Click to see type strengths graph");
         strength.addActionListener(i -> {
             Main.showGraph(Main.getStrength(), "Strength Graph");
@@ -308,10 +384,14 @@ public class pokeGUI extends JFrame {
         pokemon.addActionListener(i -> createFrame());
         pokeButton stats = new pokeButton("stats for nerds");
         stats.addActionListener(i -> printStats());
+        pokeButton pokeList = new pokeButton("Click to see the list of Pokemon");
+        pokeList.addActionListener(i -> pokemonList());
         // add components to body
+        body.add(textArea, c);
         body.add(strength, c);
         body.add(weakness, c);
         body.add(pokemon, c);
+        body.add(pokeList, c);
         body.add(stats, c);
         // -----------------------------------------------------------------------------
         // FOOTER
