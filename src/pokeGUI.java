@@ -121,7 +121,6 @@ public class pokeGUI extends JFrame {
         body.setLayout(new BoxLayout(body, BoxLayout.Y_AXIS));
         body.setOpaque(true);
 
-
         JLabel text = new JLabel("What would you like to do?");
         text.setFont(new Font("Monospace 821 BT", Font.PLAIN, 18));
         text.setAlignmentX(CENTER_ALIGNMENT);
@@ -141,7 +140,7 @@ public class pokeGUI extends JFrame {
 
         Choice typeChoice = new Choice(); // Pokemon type options
         typeChoice.setFont(new Font("Monospace 821 BT", Font.PLAIN, 18));
-        for (String t : PokemonStats.getPokemonTypes(Main.strength)){
+        for (String t : PokemonStats.getPokemonTypes(Main.strength)) {
             typeChoice.add(t);
         }
 
@@ -157,52 +156,89 @@ public class pokeGUI extends JFrame {
                     case "print stats":
                         body.remove(promptType);
                         body.remove(typeChoice);
+                        body.revalidate();
+                        body.repaint();
                         textArea.setText("");
+                        textArea.setText("The stats for the Strength Graph are: \n");
                         textArea.append(PokemonStats.printStats(Main.strength));
+                        textArea.append("\n\nThe stats for the Weakness Graph are: \n");
+                        textArea.append(PokemonStats.printStats(Main.weakness));
                         break;
 
                     case "run breadth first traversal":
-                        body.add(promptType); // BUG : Doesn't show up in page 
+                        body.add(promptType); // BUG : Doesn't show up in page
                         body.add(typeChoice);
+                        body.revalidate();
+                        body.repaint();
                         typeChoice.addItemListener(i -> {
                             textArea.setText("");
-                            textArea.setText("Commencing Breadth First Traversal at type " + typeChoice.getSelectedItem() + " ...\n");
-                            textArea.append("Breadth First Traversal Strength Graph:\n");
-                            textArea.append(PokemonStats.BreadthFirstTraversal(Main.strength, typeChoice.getSelectedItem()) + "\n");
-                            textArea.append("Breadth First Traversal Weakness Graph:\n");
-                            textArea.append(PokemonStats.BreadthFirstTraversal(Main.weakness, typeChoice.getSelectedItem()) + "\n");
+                            textArea.setText("Commencing Breadth First Traversal at type "
+                                    + typeChoice.getSelectedItem() + " ...\n");
+                            textArea.append("\nBreadth First Traversal Strength Graph:\n");
+                            textArea.append(
+                                    PokemonStats.BreadthFirstTraversal(Main.strength, typeChoice.getSelectedItem())
+                                            + "\n");
+                            textArea.append("\n Breadth First Traversal Weakness Graph:\n");
+                            textArea.append(
+                                    PokemonStats.BreadthFirstTraversal(Main.weakness, typeChoice.getSelectedItem())
+                                            + "\n");
                         });
                         break;
 
-                    case "see in degree":
-                        body.add(promptType); // BUG : Doesn't show up in page 
+                    case "see in degrees":
+                        body.add(promptType); // BUG : Doesn't show up in page
                         body.add(typeChoice);
+                        body.revalidate();
+                        body.repaint();
                         typeChoice.addItemListener(i -> {
                             textArea.setText("");
                             textArea.setText("");
-                            textArea.append("In Degree of type " + typeChoice.getSelectedItem() + " in Strength Graph");
-                            textArea.append(String.valueOf(PokemonStats.numInDegree(Main.strength, typeChoice.getSelectedItem())));
-                            textArea.append("In Degree of type " + typeChoice.getSelectedItem() + " in Weakness Graph");
-                            textArea.append(String.valueOf(PokemonStats.numInDegree(Main.weakness, typeChoice.getSelectedItem())));
+                            textArea.append(
+                                    "In Degree of type " + typeChoice.getSelectedItem() + " in Strength Graph is ");
+                            textArea.append(String
+                                    .valueOf(PokemonStats.numInDegree(Main.strength, typeChoice.getSelectedItem())));
+                            textArea.append(
+                                    "\nIn Degree of type " + typeChoice.getSelectedItem() + " in Weakness Graph is ");
+                            textArea.append(String
+                                    .valueOf(PokemonStats.numInDegree(Main.weakness, typeChoice.getSelectedItem())));
                         });
                         break;
 
-                    case "see out degree":
-                        body.add(promptType); // BUG : Doesn't show up in page 
+                    case "see out degrees":
+                        body.add(promptType); // BUG : Doesn't show up in page
                         body.add(typeChoice);
+                        body.revalidate();
+                        body.repaint();
                         typeChoice.addItemListener(i -> {
                             textArea.setText("");
                             textArea.setText("");
-                            textArea.append("In Degree of type " + typeChoice.getSelectedItem() + " in Strength Graph");
-                            textArea.append(String.valueOf(PokemonStats.numOutDegree(Main.strength, typeChoice.getSelectedItem())));
-                            textArea.append("In Degree of type " + typeChoice.getSelectedItem() + " in Weakness Graph");
-                            textArea.append(String.valueOf(PokemonStats.numOutDegree(Main.weakness, typeChoice.getSelectedItem())));
-                        }); 
+                            textArea.append(
+                                    "Out Degree of type " + typeChoice.getSelectedItem() + " in Strength Graph is ");
+                            textArea.append(String
+                                    .valueOf(PokemonStats.numOutDegree(Main.strength, typeChoice.getSelectedItem())));
+                            textArea.append(
+                                    "\nOut Degree of type " + typeChoice.getSelectedItem() + " in Weakness Graph is ");
+                            textArea.append(String
+                                    .valueOf(PokemonStats.numOutDegree(Main.weakness, typeChoice.getSelectedItem())));
+                        });
                         break;
 
                     case "see number of degrees":
-                        textArea.setText("");
-                        textArea.append(selection);
+                        body.add(promptType); // BUG : Doesn't show up in page
+                        body.add(typeChoice);
+                        body.revalidate();
+                        body.repaint();
+                        typeChoice.addItemListener(i -> {
+                            textArea.setText("");
+                            textArea.append("The number of degrees of type " + typeChoice.getSelectedItem()
+                                    + " for the Strength graph is ");
+                            textArea.append(String
+                                    .valueOf(PokemonStats.numDegrees(Main.strength, typeChoice.getSelectedItem())));
+                            textArea.append("\n\nThe number of degrees of type " + typeChoice.getSelectedItem()
+                                    + " for the Weakness Graph is ");
+                            textArea.append(String
+                                    .valueOf(PokemonStats.numDegrees(Main.weakness, typeChoice.getSelectedItem())));
+                        });
                         break;
                 }
 
