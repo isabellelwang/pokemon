@@ -3,7 +3,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-
 import java.io.FileNotFoundException;
 
 import javax.swing.*;
@@ -98,9 +97,9 @@ public class pokeGUI extends JFrame {
         });
     }
 
-    /**
-     * Displays stats for pokemon and types
-     */
+/**
+ * Run Stats
+ */
     public static void printStats() {
         JFrame statsFrame = new JFrame("Pokemon Stats");
         PokemonStats strengthStats = new PokemonStats(Main.getStrength());
