@@ -32,13 +32,13 @@ We made methods to access the data in our graph.
 First, we made a hashtable to align each pokemon with their types. The pokemons are the keys while the types are the values. Some pokemon had multiple types, so we set it as a list of types. Then, we constructed methods to access the types. We added generic methods that showed the number of degrees per node, the node with the maximum degree, the node with the minimum degree, the average degree number of the nodes. We also made a breadth first traversal for the types in the list. To make this more interactive, we used Scanner for users to choose what data they want to view. 
 
 Phase 3: 
-We made 
-
-We made a GUI with multiple sections to access different parts of our statistical analysis. Two of the pages hold the graphs. One allows you to analyze individual pokemon. And the last allows to to access specific statistics, holding options in a drop down menu for easy access. 
+We made a GUI with multiple sections to access different parts of our statistical analysis. Two of the pages hold the graphs. One allows you to analyze individual pokemon. And the last allows us to access specific statistics, holding options in a drop down menu for easy access. 
 
 Reflection on assigment: 
 
 Dani: 
 This assignment was fun! I feel like because this is a topic we are all interested in, and there are three of us, the main portion of the assignment went by pretty quickly. With extra time, we were able to construct the GUI and add fun extra things to it! 
+
+Isabelle: Our choice to work on Pokemon was very fun and interesting! I enjoyed working with Buddy and Dani on this project and adding a GUI to make our program more interactive. I also learned a lot with java awt and swing and applying what I learned in this course to this project. With us three, the main goal of the assignment was achieved and we had additional time for front-end. 
 
 
